@@ -14,8 +14,19 @@ function getComputerChoice() {
 
 //write a function that takes human choice and returns it.
 function getHumanChoice() {
-  const humanChoice = prompt("Rock, Paper or Scissors?");
-  return playRound;
+  let humanChoice = prompt("Rock, Paper or Scissors?");
+  while (
+    humanChoice === null || // Handle "Cancel"
+    humanChoice.trim() === "" || // Handle empty input
+    !["rock", "paper", "scissors"].includes(humanChoice.trim().toLowerCase())
+  ) {
+    // Validate input
+    humanChoice = prompt(
+      "Invalid input. Please enter Rock, Paper, or Scissors:"
+    );
+  }
+
+  return humanChoice.trim().toLowerCase(); // Return validated and lowercase choice
 }
 
 //write a variable to keep player scores.
@@ -24,16 +35,16 @@ const computerScore = 0;
 
 //write the logic to play a single round.
 function playRound(humanChoice, computerChoice) {
-  const draw = prompt("I'ts a tie!");
-  const lose = prompt("You Lose! ${humanChoice} beats ${computerChoice}");
-  const win = prompt("You win! ${computerChoice} beats ${humanChoice}");
+  const draw = "I'ts a tie!";
+  const lose = "You Lose! ${humanChoice} beats ${computerChoice}";
+  const win = "You win! ${computerChoice} beats ${humanChoice}";
 
-  if (humanChoice.toLowerCase() === computerChoice) {
+  if (humanChoice === computerChoice) {
     return draw;
   } else if (
-    (humanChoice.toLowerCase() === "Rock" && computerChoice === "Scissors") ||
-    (humanChoice.toLowerCase() === "Scissors" && computerChoice === "Paper") ||
-    (humanChoice.toLowerCase() === "Paper" && computerChoice === "Rock")
+    (humanChoice === "Rock" && computerChoice === "Scissors") ||
+    (humanChoice === "Scissors" && computerChoice === "Paper") ||
+    (humanChoice === "Paper" && computerChoice === "Rock")
   ) {
     return win;
   } else {
