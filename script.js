@@ -9,6 +9,7 @@ function getComputerChoice() {
   } else {
     computerChoice = "Scissors";
   }
+  console.log(computerChoice);
   return computerChoice;
 }
 
@@ -33,27 +34,38 @@ function getHumanChoice() {
 const humanScore = 0;
 const computerScore = 0;
 
-//write the logic to play a single round.
-function playRound(humanChoice, computerChoice) {
-  const draw = "I'ts a tie!";
-  const lose = "You Lose! ${humanChoice} beats ${computerChoice}";
-  const win = "You win! ${computerChoice} beats ${humanChoice}";
-
+//check winner
+function checkWinner(humanChoice, computerChoice) {
   if (humanChoice === computerChoice) {
-    return draw;
+    return "Tie!";
   } else if (
     (humanChoice === "Rock" && computerChoice === "Scissors") ||
     (humanChoice === "Scissors" && computerChoice === "Paper") ||
     (humanChoice === "Paper" && computerChoice === "Rock")
   ) {
+    return "Player";
+  } else {
+    return "Computer";
+  }
+}
+
+//write the logic to play a single round.
+function playRound(humanChoice, computerChoice) {
+  const draw = "It is a tie!";
+  const lose = `You Lose! ${computerChoice} beats ${humanChoice}`;
+  const win = `You win! ${humanChoice} beats ${computerChoice}`;
+  const result = checkWinner(humanChoice, computerChoice);
+  if (result == "Player") {
     return win;
+  } else if (result == "Tie!") {
+    return draw;
   } else {
     return lose;
   }
 }
-const humanSelection = getHumanChoice();
+const humanSelection = "rock";
 const computerSelection = getComputerChoice();
 
 playRound(humanSelection, computerSelection);
-
+console.log(playRound(humanSelection, computerSelection));
 //write the logic to play entire game
