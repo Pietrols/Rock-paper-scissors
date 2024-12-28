@@ -3,11 +3,11 @@ let computerChoice;
 function getComputerChoice() {
   const randomNumber = Math.floor(Math.random() * 3);
   if (randomNumber === 0) {
-    computerChoice = "Rock";
+    computerChoice = "rock";
   } else if (randomNumber === 1) {
-    computerChoice = "Paper";
+    computerChoice = "paper";
   } else {
-    computerChoice = "Scissors";
+    computerChoice = "scissors";
   }
   console.log(computerChoice);
   return computerChoice;
@@ -36,12 +36,12 @@ const computerScore = 0;
 
 //check winner
 function checkWinner(humanChoice, computerChoice) {
-  if (humanChoice === computerChoice) {
-    return "Tie!";
+  if (humanChoice == computerChoice) {
+    return "Tie";
   } else if (
-    (humanChoice === "Rock" && computerChoice === "Scissors") ||
-    (humanChoice === "Scissors" && computerChoice === "Paper") ||
-    (humanChoice === "Paper" && computerChoice === "Rock")
+    (humanChoice == "rock" && computerChoice == "scissors") ||
+    (humanChoice == "scissors" && computerChoice == "paper") ||
+    (humanChoice == "paper" && computerChoice == "rock")
   ) {
     return "Player";
   } else {
@@ -57,7 +57,7 @@ function playRound(humanChoice, computerChoice) {
   const result = checkWinner(humanChoice, computerChoice);
   if (result == "Player") {
     return win;
-  } else if (result == "Tie!") {
+  } else if (result == "Tie") {
     return draw;
   } else {
     return lose;
